@@ -1,13 +1,14 @@
 class Solution:
     def roman_to_int(self, s: str) -> int:
-        i_store = 0  # count I numerals
         integer = 0
-        for numeral in s:
-            if
-                integer += self.numeral_to_int(numeral)
+        for i in range(len(s)-1):
+            prev_numeral = self.numeral_to_int(s[i-1])
+            curr_numeral = self.numeral_to_int(s[i])
 
-        if i_store > 0:
-            integer += i_store
+            if prev_numeral > curr_numeral or prev_numeral == curr_numeral:
+                integer += self.numeral_to_int(curr_numeral)
+            else:
+                integer -= self.numeral_to_int(prev_numeral)
 
         print(integer)
         return integer
@@ -34,4 +35,4 @@ class Solution:
 
 
 sol = Solution()
-sol.roman_to_int('VX')
+sol.roman_to_int('IV')
