@@ -1,16 +1,25 @@
 class Solution:
     def roman_to_int(self, s: str) -> int:
+        if len(s) < 2:
+            return self.numeral_to_int(s)
+
         integer = 0
         for i in range(len(s)-1):
-            prev_numeral = self.numeral_to_int(s[i-1])
-            curr_numeral = self.numeral_to_int(s[i])
+            prev_numeral = self.numeral_to_int(s[i])
+            curr_numeral = self.numeral_to_int(s[i+1])
+            i += 1
 
-            if prev_numeral > curr_numeral or prev_numeral == curr_numeral:
-                integer += self.numeral_to_int(curr_numeral)
+            print(prev_numeral, curr_numeral)
+            if prev_numeral >= curr_numeral:
+                integer += prev_numeral + curr_numeral
+                print('+')
+                print('int:', integer)
             else:
-                integer -= self.numeral_to_int(prev_numeral)
+                integer -= curr_numeral - prev_numeral
+                print('-')
+                print('int:', integer)
 
-        print(integer)
+
         return integer
 
     @staticmethod
@@ -35,4 +44,4 @@ class Solution:
 
 
 sol = Solution()
-sol.roman_to_int('IV')
+sol.roman_to_int('CIX')
