@@ -7,18 +7,17 @@ class Solution:
         for i in range(len(s)-1):
             prev_numeral = self.numeral_to_int(s[i])
             curr_numeral = self.numeral_to_int(s[i+1])
-            i += 1
 
+            integer += curr_numeral
             print(prev_numeral, curr_numeral)
             if prev_numeral >= curr_numeral:
-                integer += prev_numeral + curr_numeral
+                integer += prev_numeral
                 print('+')
                 print('int:', integer)
             else:
-                integer -= curr_numeral - prev_numeral
+                integer -= prev_numeral
                 print('-')
                 print('int:', integer)
-
 
         return integer
 
@@ -44,4 +43,4 @@ class Solution:
 
 
 sol = Solution()
-sol.roman_to_int('CIX')
+sol.roman_to_int('XII')
