@@ -6,18 +6,23 @@ class Solution:
         integer = 0
         for i in range(len(s)-1):
             prev_numeral = self.numeral_to_int(s[i])
-            curr_numeral = self.numeral_to_int(s[i+1])
-
-            integer += curr_numeral
+            curr_numeral = self.numeral_to_int(s[i + 1])
             print(prev_numeral, curr_numeral)
-            if prev_numeral >= curr_numeral:
-                integer += prev_numeral
-                print('+')
+
+            if s[i] == 'I' and s[i+1] == ('V' or 'X'):
+                integer += curr_numeral - prev_numeral
                 print('int:', integer)
+            elif s[i] == 'X' and s[i+1] == ('L' or 'C'):
+                print('int:', integer)
+                integer += curr_numeral - prev_numeral
+            elif s[i] == 'C' and s[i+1] == ('D' or 'M'):
+                print('int:', integer)
+                integer += curr_numeral - prev_numeral
             else:
-                integer -= prev_numeral
-                print('-')
-                print('int:', integer)
+                integer += curr_numeral + prev_numeral
+
+            print('int:', integer)
+
 
         return integer
 
@@ -43,4 +48,4 @@ class Solution:
 
 
 sol = Solution()
-sol.roman_to_int('XII')
+sol.roman_to_int('XIII')
