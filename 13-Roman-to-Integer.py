@@ -3,7 +3,6 @@ class Solution:
         if len(s) < 2:
             return self.numeral_to_int(s)
 
-        curr_numeral = 0
         next_numeral = 0
         integer = 0
         for i in range(len(s)-1):
@@ -26,7 +25,8 @@ class Solution:
 
         integer += next_numeral
 
-        print('total:', integer)
+        print('\nroman numeral:', s)
+        print('int:', integer)
         return integer
 
     @staticmethod
