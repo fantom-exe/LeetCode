@@ -3,27 +3,30 @@ class Solution:
         if len(s) < 2:
             return self.numeral_to_int(s)
 
+        curr_numeral = 0
+        next_numeral = 0
         integer = 0
         for i in range(len(s)-1):
-            prev_numeral = self.numeral_to_int(s[i])
-            curr_numeral = self.numeral_to_int(s[i + 1])
-            print(prev_numeral, curr_numeral)
+            curr_numeral = self.numeral_to_int(s[i])
+            next_numeral = self.numeral_to_int(s[i + 1])
+            print(curr_numeral, next_numeral)
 
-            if s[i] == 'I' and s[i+1] == ('V' or 'X'):
-                integer += curr_numeral - prev_numeral
-                print('int:', integer)
-            elif s[i] == 'X' and s[i+1] == ('L' or 'C'):
-                print('int:', integer)
-                integer += curr_numeral - prev_numeral
-            elif s[i] == 'C' and s[i+1] == ('D' or 'M'):
-                print('int:', integer)
-                integer += curr_numeral - prev_numeral
+            if curr_numeral == 1 and (next_numeral == 5 or next_numeral == 10):
+                integer -= curr_numeral
+                print(integer)
+            elif curr_numeral == 10 and (next_numeral == 50 or next_numeral == 100):
+                print(integer)
+                integer -= curr_numeral
+            elif curr_numeral == 100 and (next_numeral == 500 or next_numeral == 1000):
+                print(integer)
+                integer -= curr_numeral
             else:
-                integer += curr_numeral + prev_numeral
+                print(integer)
+                integer += curr_numeral
 
-            print('int:', integer)
+        integer += next_numeral
 
-
+        print('total:', integer)
         return integer
 
     @staticmethod
@@ -48,4 +51,4 @@ class Solution:
 
 
 sol = Solution()
-sol.roman_to_int('XIII')
+sol.roman_to_int('MCMXCIV')
